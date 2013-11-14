@@ -18,28 +18,6 @@
         The current version at the moment of writing 3.2.3.
       </p>
 
-      <h2>A Note About Security and Identification</h2>
-
-      <p>
-        There are three ways to identify yourself to the Desert Bus Chat
-        server: NickServ, server password, or SASL. In Textual's case, all
-        three are about the same in terms of security*, but SASL is preferred,
-        and is explained in <a href="#identification">Identifying Yourself</a>.
-        No matter which option you choose, you should also review
-        <a href="#sslsetup">Connecting Securely</a>
-        for instructions on using SSL to secure your connection.
-      </p>
-
-      <p>
-        <small>
-          * Normally SASL is more secure, but Textual only supports SASL PLAIN,
-          which doesn't encrypt your data when you're sending it to the server.
-          Make sure to connect using SSL if you're concerned about this. In the
-          future Textual might support some form of encryption, in which case
-          you'll already be set.
-        </small>
-      </p>
-
       <ul class="table-of-contents">
         <li><a href="#initialsetup">Initial Setup</a></li>
         <li><a href="#autoconnect">Connecting Automatically</a></li>
@@ -102,14 +80,6 @@
       <img src="images/textual/04-in-channel.png"
         alt="Clicking on #desertbus should bring you to the main chat">
 
-      <p>
-        If for some reason <samp>#desertbus</samp> isn't there, make sure you
-        connected to the server successfully. If that's not the problem, just
-        type <samp>/join #desertbus</samp> in the text box you see in the main
-        window, then hit <strong>Return</strong>, and hopefully you'll be
-        connected to the chat.
-      </p>
-
       <h2 id="autoconnect">Connecting Automatically on Startup</h2>
 
       <p>
@@ -126,40 +96,24 @@
       <h2 id="identification">Automatically Identifying Yourself to the Server</h2>
 
       <p>
-        If you have a donor account, you can link your account with your
-        nickname in chat. The preferred method for this is SASL, which is very
-        easy to set up using Textual. Open the server configuration screen by
-        hitting <samp>Cmd+U</samp>. Click on the <strong>Identity</strong>
-        configuration item on the left, and fill in the box labelled
-        <strong>Personal Password</strong>.
-      </p>
-
-      <img src="images/textual/06-personal-details.png"
-        alt="">
-
-      <p>
-        Your password for SASL is not just the password for your donor account,
-        you also need to include the email address you used for the
-        account. The format for the password is:
+        If you have a donor account (and you should! How else will you bid on
+        the live auctions? Or get your name in for a chance to win prizes from
+        the donation challenges?), you can link your account with your
+        nickname in chat. The easiest method for this in Textual is to use
+        its <strong>Connect Commands</strong>. Open the server configuration
+        screen by hitting <samp>Cmd+U</samp>. Click on the
+        <strong>Connect Commands</strong> configuration item on the left, and
+        fill in the box labelled <strong>Perform commands on connect:</strong>
+        with the command below, replacing the email address and password with
+        your donor account ones.
       </p>
 
       <blockquote>
-        <samp>&lt;email address&gt; &lt;password&gt;</samp>
+        <samp>/msg NickServ login &lt;email address&gt; &lt;password&gt;</samp>
       </blockquote>
 
-      <p>
-        or
-      </p>
-
-      <blockquote>
-        <samp>&lt;email address&gt;:&lt;password&gt;</samp>
-      </blockquote>
-
-      <p>
-        with a colon. Once you hit save, re-connect to the Desert Bus server and
-        you should automatically authenticate. This has the added benefit of
-        saving your nickname so that others can't take it.
-      </p>
+      <img src="images/textual/08-connection-commands.png"
+        alt="An example of the command you should use to identify yourself">
 
       <h2 id="hidejoinpart">Hiding Join and Part Messages in Textual</h2>
 
@@ -171,7 +125,7 @@
       </p>
 
       <p>
-        To disable these message, you'll need to change the option in the
+        To disable these messages, you'll need to change the option in the
         channel configuration screen. To get there, click on
         <samp>#desertbus</samp> in the sidebar, then hit <samp>Cmd+I</samp>, or
         the gear icon in the lower left, then <strong>Channel Properties</strong>.
@@ -193,9 +147,10 @@
         Making Textual connect to the Desert Bus server with SSL is also very
         simple. Press <samp>Cmd+U</samp> to open the server configuration
         window, and you should automatically be focused on <strong>General</strong>
-        configuration. To enable SSL, just check the <strong>Use SSL</strong>
-        box next to <strong>Port</strong> and make sure to <strong>Save</strong>.
-        Re-connect to the server and you should be using SSL automatically.
+        configuration. To enable SSL, change the <strong>Port:</strong> to
+        <strong>6697</strong>, and check the <strong>Use SSL</strong> box. Make
+        sure to <strong>Save</strong>.  Re-connect to the server and you should
+        now be connected over SSL.
       <p>
 
       <img src="images/textual/05-server-details.png"
